@@ -1,8 +1,16 @@
+/*
+ * @Author: your name
+ * @Date: 2022-03-10 15:48:59
+ * @LastEditTime: 2022-03-10 16:40:51
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: /yearn-weixin/index.js
+ */
 const path = require("path");
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
-const { init: initDB, Counter } = require("./db");
+const { init: initDB, Location } = require("./db");
 
 const logger = morgan("tiny");
 
@@ -18,35 +26,13 @@ app.get("/", async (req, res) => {
 });
 
 // 更新计数
-app.post("/api/count", async (req, res) => {
-  const { action } = req.body;
-  if (action === "inc") {
-    await Counter.create();
-  } else if (action === "clear") {
-    await Counter.destroy({
-      truncate: true,
-    });
-  }
+app.post("/api/postLocation", async (req, res) => {
+  const { latitude, longitude } = req.body;
+  await Counter.create({latitude, longitude});
   res.send({
     code: 0,
-    data: await Counter.count(),
+    data: 'success',
   });
-});
-
-// 获取计数
-app.get("/api/count", async (req, res) => {
-  const result = await Counter.count();
-  res.send({
-    code: 0,
-    data: result,
-  });
-});
-
-// 小程序调用，获取微信 Open ID
-app.get("/api/wx_openid", async (req, res) => {
-  if (req.headers["x-wx-source"]) {
-    res.send(req.headers["x-wx-openid"]);
-  }
 });
 
 const port = process.env.PORT || 80;
