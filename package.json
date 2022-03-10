@@ -4,8 +4,8 @@
   "description": "微信云托管 express 框架模版",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=dev node index.js",
-    "local": "node index.js"
+    "start": "node index.js",
+    "local": "NODE_ENV=dev node index.js"
   },
   "author": "",
   "license": "Apache-2.0",
