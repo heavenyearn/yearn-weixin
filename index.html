@@ -79,7 +79,6 @@
     function init() {
       try {
         let result;
-        console.log(result);
 
         navigator.geolocation.getCurrentPosition(
           v => {
@@ -93,7 +92,6 @@
                 longitude,
                 latitude
             };
-            console.log(result);
             set(result);
         }, error => { console.log(error) });
       }
