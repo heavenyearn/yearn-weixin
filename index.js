@@ -18,7 +18,7 @@ app.get("/", async (req, res) => {
 });
 
 // 更新计数
-app.post("/api/count", async (req, res) => {
+app.post("/api/postLocation", async (req, res) => {
   const { action } = req.body;
   if (action === "inc") {
     await Counter.create();
