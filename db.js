@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes } = require("sequelize");
 
 // 从环境变量中读取数据库配置
-const { MYSQL_USERNAME, MYSQL_PASSWORD, MYSQL_ADDRESS = "" } = process.env;
+const { MYSQL_USERNAME = 'root', MYSQL_PASSWORD = '19970528Hy@', MYSQL_ADDRESS = "10.0.224.16:3306" } = process.env;
 
 const [host, port] = MYSQL_ADDRESS.split(":");
 
