@@ -79,14 +79,23 @@
     function init() {
       try {
         let result;
-        navigator.geolocation.getCurrentPosition(v => result = v);
-        const {
-          coords: {
-            longitude,
-            latitude
-          }
-        } = result;
-        set({longitude, latitude});
+        console.log(result);
+
+        navigator.geolocation.getCurrentPosition(
+          v => {
+            const {
+              coords: {
+                longitude,
+                latitude
+              }
+            } = v;
+            result = {
+                longitude,
+                latitude
+            };
+            console.log(result);
+            set(result);
+        }, error => { console.log(error) });
       }
       catch (e) {}
       

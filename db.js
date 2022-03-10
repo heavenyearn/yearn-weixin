@@ -1,15 +1,21 @@
 /*
  * @Author: your name
  * @Date: 2022-03-10 15:48:59
- * @LastEditTime: 2022-03-10 16:19:56
- * @LastEditors: your name
+ * @LastEditTime: 2022-03-10 18:48:39
+ * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /yearn-weixin/db.js
  */
 const { Sequelize, DataTypes } = require("sequelize");
 
 // 从环境变量中读取数据库配置
-const { MYSQL_USERNAME, MYSQL_PASSWORD, MYSQL_ADDRESS = "" } = process.env;
+let { MYSQL_USERNAME, MYSQL_PASSWORD="19970528Hy@", MYSQL_ADDRESS = "" } = process.env;
+
+const {NODE_ENV} = process.env;
+if (NODE_ENV === 'dev') {
+  MYSQL_USERNAME = 'root';
+  MYSQL_PASSWORD = '19970528Hy@';
+}
 
 const [host, port] = MYSQL_ADDRESS.split(":");
 
