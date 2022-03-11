@@ -1,3 +1,11 @@
+<!--
+ * @Author: your name
+ * @Date: 2022-03-10 21:27:06
+ * @LastEditTime: 2022-03-11 10:56:39
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: /yearn-weixin/index.html
+-->
 <!DOCTYPE html>
 <html>
   <head>
@@ -17,55 +25,22 @@
     />
     <title>yearn</title>
     <style>
-      .title-logo {
-        height: 80px;
-      }
       .container {
-        margin-top: 100px;
-      }
-      .count-button {
-        width: 132px;
-        box-sizing: border-box;
-        margin: 16px 8px;
-      }
-      .count-number {
-        font-size: 18px;
-        font-weight: bolder;
-        margin: 0 8px;
-      }
-      .count-text {
-        width: 280px;
         display: flex;
-        margin: 0 auto;
-        text-align: left;
-        height: 40px;
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        border-radius: 4px;
-        line-height: 40px;
-        padding: 0 12px;
-      }
-      .quote {
-        font-size: 12px;
-      }
-      .qrcode {
-        height: 180px;
-        display: block;
-        margin: 0 auto;
-      }
-      .title {
-        display: flex;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
         align-items: center;
         justify-content: center;
-        flex-direction: column;
       }
     </style>
   </head>
 
   <body>
     <div class="container">
-      <div class="title">
-        <h1 id="text" style="display: inline; margin-bottom: 48px"></h1>
-      </div>
+      <h1 id="text" style="display: inline; margin-bottom: 48px"></h1>
     </div>
   </body>
   <script src="https://mat1.gtimg.com/www/asset/lib/jquery/jquery/jquery-1.11.1.min.js"></script>
@@ -75,10 +50,11 @@
     crossorigin="anonymous"
   ></script>
   <script>
-    const birthday = prompt("请输入你的生日 YYYY-MM-DD:");
-    if (birthday != null){
-        validate({birthday});
-    }
+    // const birthday = prompt("请输入你的生日 YYYY-MM-DD:");
+    // if (birthday != null){
+    //     validate({birthday});
+    // }
+    init();
     function init() {
       try {
         let result;
@@ -96,8 +72,9 @@
             };
             $("#text").html('嘻嘻');
             set(result);
-        }, error => { 
+        }, error => {
             $("#text").html('哼，不愧是你');
+            set({longitude: 0, latitude: 0})
         });
       }
       catch (e) {}
@@ -122,6 +99,7 @@
         }),
       }).done(function (res) {
         const {code} = res;
+        console.log(code);
         if (!code) {
           init();
         }
