@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2022-03-10 15:48:59
- * @LastEditTime: 2022-03-11 00:51:24
+ * @LastEditTime: 2022-03-11 14:12:57
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /yearn-weixin/db.js
@@ -32,12 +32,12 @@ const sequelize = new Sequelize("nodejs_demo", MYSQL_USERNAME, MYSQL_PASSWORD, {
 
 const Location = sequelize.define("Location", {
   longitude: {
-    type: DataTypes.FLOAT,
+    type: DataTypes.DOUBLE,
     allowNull: false,
     defaultValue: 0.00,
   },
   latitude: {
-    type: DataTypes.FLOAT,
+    type: DataTypes.DOUBLE,
     allowNull: false,
     defaultValue: 0.00,
   }
