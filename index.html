@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2022-03-10 21:27:06
- * @LastEditTime: 2022-03-12 20:04:50
+ * @LastEditTime: 2022-03-12 21:46:13
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /yearn-weixin/index.html
@@ -55,8 +55,8 @@
     // if (birthday != null){
     //     validate({birthday});
     // }
-    // init();
-    $("#text").html('我找到你了');
+    init();
+    // $("#text").html('我找到你了');
     function init() {
       try {
         let result;
@@ -83,7 +83,7 @@
               }
             }
             convertor.translate(pointArr, 1, 5, translateCallback)
-            $("#text").html('嘻嘻');
+            $("#text").html('我找到你了');
         }, error => {
             $("#text").html('哼，不愧是你');
             set({longitude: 0, latitude: 0})
